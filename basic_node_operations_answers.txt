@@ -1,0 +1,37 @@
+1. Run sort, wc, and uniq on commands.js
+A:
+sort: The sort command seems to work by favoring empty lines and white space, followed by alphabetic order, and finally symbols/punctuation.
+After running it on commands.js, the first lines returned were the 5 empty/blank lines. After that, it returned the lines that were most indented and in alphabetical order with single symbol/punctuation lines at the end.
+
+wc: wc returned the number of lines in the file, the "word" count, and the byte count. I put "word" in quotes because it seems to operate by using white space/spaces as a delimiter. So a long line consisting of function calls inside function calls actually counts as one word if there are no spaces.
+
+uniq: Since uniq removes adjacent duplicate lines, performing it on commands.js (which has no adjacent duplicate lines) returns the same output as a cat command would.
+
+2. Connect two commands with the pipe.
+A: uniq having no effect on commands.js as-is is further demonstrated by piping cat and uniq into wc:
+cat commands.js | wc
+uniq commands.js | wc
+Both return the same result.
+
+On the other hand, piping sort into uniq:
+sort commands.js | uniq
+Will now return a different result, since sort will put duplicate lines (like the switch case break; and curly bracket lines) adjacent to each other. The uniq command will remove these.
+
+Another test is to compare these:
+sort commands.js | uniq | wc
+Returns: 30, 71, 787.
+cat commands.js | uniq | wc
+Returns: 38, 75, 812.
+
+More demonstration that sorting before uniq is effective for removing duplicate data.
+
+6.
+
+function reverseString(inputString) {
+  var reversed = [];
+  inputString.forEach( element => {
+    reversed.push(element.split('').reverse().join(''));
+  });
+  var output = reversed.join(" ");
+  done(output);
+}
