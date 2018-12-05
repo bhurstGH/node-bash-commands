@@ -143,11 +143,6 @@ const commandLibrary = {
       })
 
       done(filterData.join("\n"));
-      // for (let i = 0; i < data.length; i++) {
-      //   if (data[i] === data[i+1]) {
-      //
-      //   }
-      // }
     });
   },
 
